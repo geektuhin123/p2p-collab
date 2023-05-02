@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package spreadsheet;
+
+message Cell {
+  string id = 1;
+  string value = 2;
+  Location location = 3;
+}
+
+message Location {
+  int32 row = 1;
+  int32 column = 2;
+}
+
+service Spreadsheet {
+  rpc AddCell(Cell) returns (google.protobuf.Empty) {}
+  rpc UpdateCell(Cell) returns (google.protobuf.Empty) {}
+  rpc GetCells(google.protobuf.Empty) returns (stream Cell) {}
+}
