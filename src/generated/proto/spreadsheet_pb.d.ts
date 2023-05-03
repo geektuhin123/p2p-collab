@@ -16,6 +16,17 @@ export class Cell extends jspb.Message {
   getLocation(): Location | undefined;
   setLocation(value?: Location): void;
 
+  getLocked(): boolean;
+  setLocked(value: boolean): void;
+
+  getError(): string;
+  setError(value: string): void;
+
+  clearCollaboratorsList(): void;
+  getCollaboratorsList(): Array<Collaborator>;
+  setCollaboratorsList(value: Array<Collaborator>): void;
+  addCollaborators(value?: Collaborator, index?: number): Collaborator;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Cell.AsObject;
   static toObject(includeInstance: boolean, msg: Cell): Cell.AsObject;
@@ -31,6 +42,33 @@ export namespace Cell {
     id: string,
     value: string,
     location?: Location.AsObject,
+    locked: boolean,
+    error: string,
+    collaboratorsList: Array<Collaborator.AsObject>,
+  }
+}
+
+export class Collaborator extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Collaborator.AsObject;
+  static toObject(includeInstance: boolean, msg: Collaborator): Collaborator.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Collaborator, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Collaborator;
+  static deserializeBinaryFromReader(message: Collaborator, reader: jspb.BinaryReader): Collaborator;
+}
+
+export namespace Collaborator {
+  export type AsObject = {
+    id: string,
+    name: string,
   }
 }
 

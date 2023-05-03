@@ -8,6 +8,14 @@ message Cell {
   string id = 1;
   string value = 2;
   Location location = 3;
+  bool locked = 4;
+  string error = 5; // Add error field
+  repeated Collaborator collaborators = 6;
+}
+
+message Collaborator {
+  string id = 1;
+  string name = 2;
 }
 
 message Location {
@@ -19,4 +27,6 @@ service Spreadsheet {
   rpc AddCell(Cell) returns (google.protobuf.Empty) {}
   rpc UpdateCell(Cell) returns (google.protobuf.Empty) {}
   rpc GetCells(google.protobuf.Empty) returns (stream Cell) {}
+  rpc UpdateCellStream(stream Cell) returns (stream Cell) {}
+  rpc realtimeCollaboration(stream Collaborator) returns (stream Cell) {}
 }

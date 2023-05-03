@@ -27,6 +27,17 @@ function deserialize_spreadsheet_Cell(buffer_arg) {
   return proto_spreadsheet_pb.Cell.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_spreadsheet_Collaborator(arg) {
+  if (!(arg instanceof proto_spreadsheet_pb.Collaborator)) {
+    throw new Error('Expected argument of type spreadsheet.Collaborator');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_spreadsheet_Collaborator(buffer_arg) {
+  return proto_spreadsheet_pb.Collaborator.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var SpreadsheetService = exports.SpreadsheetService = {
   addCell: {
@@ -59,6 +70,28 @@ var SpreadsheetService = exports.SpreadsheetService = {
     responseType: proto_spreadsheet_pb.Cell,
     requestSerialize: serialize_google_protobuf_Empty,
     requestDeserialize: deserialize_google_protobuf_Empty,
+    responseSerialize: serialize_spreadsheet_Cell,
+    responseDeserialize: deserialize_spreadsheet_Cell,
+  },
+  updateCellStream: {
+    path: '/spreadsheet.Spreadsheet/UpdateCellStream',
+    requestStream: true,
+    responseStream: true,
+    requestType: proto_spreadsheet_pb.Cell,
+    responseType: proto_spreadsheet_pb.Cell,
+    requestSerialize: serialize_spreadsheet_Cell,
+    requestDeserialize: deserialize_spreadsheet_Cell,
+    responseSerialize: serialize_spreadsheet_Cell,
+    responseDeserialize: deserialize_spreadsheet_Cell,
+  },
+  realtimeCollaboration: {
+    path: '/spreadsheet.Spreadsheet/realtimeCollaboration',
+    requestStream: true,
+    responseStream: true,
+    requestType: proto_spreadsheet_pb.Collaborator,
+    responseType: proto_spreadsheet_pb.Cell,
+    requestSerialize: serialize_spreadsheet_Collaborator,
+    requestDeserialize: deserialize_spreadsheet_Collaborator,
     responseSerialize: serialize_spreadsheet_Cell,
     responseDeserialize: deserialize_spreadsheet_Cell,
   },
